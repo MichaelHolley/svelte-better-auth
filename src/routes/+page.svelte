@@ -64,25 +64,13 @@
 	<h2>Welcome, {user.name}!</h2>
 	<p>{user.email}</p>
 	<p>{user.id}</p>
-	<button onclick={signOutHandler}>Sign Out</button>
+	<button onclick={signOutHandler} class="border">Sign Out</button>
 {:else}
 	<h2>Please sign up</h2>
 	<form onsubmit={signUpHandler}>
-		<input bind:value={mailInput} type="email" placeholder="Email" />
-		<input bind:value={passwordInput} type="password" placeholder="Password" />
-		<button type="submit">Sign Up</button>
-		<button type="button" onclick={handleSignIn}>Sign In</button>
+		<input bind:value={mailInput} type="email" placeholder="Email" class="my-1 border" />
+		<input bind:value={passwordInput} type="password" placeholder="Password" class="my-1 border" />
+		<button type="submit" class="border">Sign Up</button>
+		<button type="button" onclick={handleSignIn} class="border">Sign In</button>
 	</form>
 {/if}
-
-<style>
-	@import 'tailwindcss';
-
-	input {
-		@apply my-1 border;
-	}
-
-	button {
-		@apply border;
-	}
-</style>
