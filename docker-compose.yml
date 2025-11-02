@@ -8,7 +8,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${BETTER_AUTH_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${BETTER_AUTH_PASSWORD}
-      - MONGO_INITDB_DATABASE=${BETTER_AUTH_DATABASE}
+      - MONGO_INITDB_DATABASE=${APP_DB}
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
