@@ -1,11 +1,14 @@
 import { getRequestEvent } from '$app/server';
 import { error } from '@sveltejs/kit';
+import { auth } from './auth';
 
-export function requireAuth() {
-	const { locals } = getRequestEvent();
+export async function requireAuth() {
+	const { locals, request } = getRequestEvent();
+
+	const headers = request.headers;
 
 	if (!locals.user) {
-		// TODO signout and delete cookie
+		await auth.api.signOut({ headers });
 		error(401, { message: 'Unauthorized' });
 	}
 
