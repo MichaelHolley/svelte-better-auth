@@ -10,5 +10,8 @@
 </svelte:head>
 
 <div class="m-4">
+	<div class="mb-8">
+		<a href="/" class="underline">Home</a>
+	</div>
 	{@render children()}
 </div>

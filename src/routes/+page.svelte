@@ -1,16 +1,10 @@
 <script lang="ts">
 	import { signIn, signOut, signUp, useSession } from '$lib/auth/auth-client';
-	import type { User } from 'better-auth';
 
 	const session = useSession();
 
-	let user = $state<User | null>(null);
 	let mailInput = $state('');
 	let passwordInput = $state('');
-
-	session.subscribe((value) => {
-		user = value?.data?.user || null;
-	});
 
 	const signUpHandler = async () => {
 		try {
@@ -60,17 +54,25 @@
 	};
 </script>
 
-{#if session && user}
-	<h2>Welcome, {user.name}!</h2>
-	<p>{user.email}</p>
-	<p>{user.id}</p>
+{#if $session && $session.data && $session.data.user}
+	<h2>Welcome, {$session.data.user.name}!</h2>
+	<p>{$session.data.user.email}</p>
+	<p>{$session.data.user.id}</p>
 	<button onclick={signOutHandler} class="border">Sign Out</button>
+{:else if $session.isPending || $session.isRefetching}
+	<p>Loading session...</p>
 {:else}
 	<h2>Please sign up</h2>
 	<form onsubmit={signUpHandler}>
 		<input bind:value={mailInput} type="email" placeholder="Email" class="my-1 border" />
 		<input bind:value={passwordInput} type="password" placeholder="Password" class="my-1 border" />
-		<button type="submit" class="border">Sign Up</button>
-		<button type="button" onclick={handleSignIn} class="border">Sign In</button>
+		<button type="submit" class="border px-1">Sign Up</button>
+		<button type="button" onclick={handleSignIn} class="border px-1">Sign In</button>
 	</form>
 {/if}
+
+<div class="mt-6">
+	<a class="underline" href="/secure">Go to Secure Page</a>
+	<br />
+	<a class="underline" href="/anonymous">Go to Anonymous Page</a>
+</div>
