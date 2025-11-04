@@ -2,6 +2,8 @@ import { betterAuth } from 'better-auth';
 import { mongodbAdapter } from 'better-auth/adapters/mongodb';
 import { MongoClient } from 'mongodb';
 import { BETTER_AUTH_USERNAME, BETTER_AUTH_PASSWORD, APP_DB } from '$env/static/private';
+import { sveltekitCookies } from 'better-auth/svelte-kit';
+import { getRequestEvent } from '$app/server';
 
 const client = new MongoClient(`mongodb://localhost:27017/${APP_DB}`, {
 	authSource: 'admin',
@@ -20,5 +22,6 @@ export const auth = betterAuth({
 		enabled: true,
 		requireEmailVerification: false,
 		autoSignIn: true
-	}
+	},
+	plugins: [sveltekitCookies(getRequestEvent)]
 });
