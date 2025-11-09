@@ -17,6 +17,16 @@
 			]
 		}
 	},
+	"portsAttributes": {
+		"5173": {
+			"label": "Vite Dev Server",
+			"onAutoForward": "notify"
+		},
+		"27017": {
+			"label": "MongoDB",
+			"onAutoForward": "silent"
+		}
+	},
 	"forwardPorts": [5173, 27017],
 	"postCreateCommand": "pnpm i"
 }

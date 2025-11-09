@@ -17,9 +17,9 @@ services:
     env_file:
       - path: ../.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USERNAME}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
-      - MONGO_INITDB_DATABASE=${APP_DB}
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+      - MONGO_INITDB_DATABASE=sveltekit_auth
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
