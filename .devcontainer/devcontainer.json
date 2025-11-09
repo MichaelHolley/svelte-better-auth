@@ -1,0 +1,22 @@
+{
+	"name": "Svelte Better-Auth",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"bradlc.vscode-tailwindcss",
+				"YoavBls.pretty-ts-errors",
+				"formulahendry.auto-rename-tag",
+				"wix.vscode-import-cost",
+				"1YiB.svelte-bundle",
+				"mongodb.mongodb-vscode"
+			]
+		}
+	},
+	"forwardPorts": [5173],
+	"postCreateCommand": "pnpm i"
+}
