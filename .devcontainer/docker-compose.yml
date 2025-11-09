@@ -14,15 +14,13 @@ services:
     restart: unless-stopped
     ports:
       - '27017:27017'
-    env_file:
-      - path: ../.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password123
-      - MONGO_INITDB_DATABASE=sveltekit_auth
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: sveltekit_auth
     volumes:
-      - mongodb_data:/data/db
-      - mongodb_config:/data/configdb
+      mongodb_data: /data/db
+      mongodb_config: /data/configdb
 
 volumes:
   mongodb_data:
