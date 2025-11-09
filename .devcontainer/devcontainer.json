@@ -17,6 +17,6 @@
 			]
 		}
 	},
-	"forwardPorts": [5173],
+	"forwardPorts": [5173, 27017],
 	"postCreateCommand": "pnpm i"
 }
