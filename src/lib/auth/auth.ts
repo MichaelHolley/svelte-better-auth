@@ -1,11 +1,11 @@
 import { betterAuth } from 'better-auth';
 import { mongodbAdapter } from 'better-auth/adapters/mongodb';
 import { MongoClient } from 'mongodb';
-import { MONGODB_USERNAME, MONGODB_PASSWORD, APP_DB } from '$env/static/private';
+import { MONGODB_USERNAME, MONGODB_PASSWORD, APP_DB, MONGODB_URL } from '$env/static/private';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { getRequestEvent } from '$app/server';
 
-const client = new MongoClient(`mongodb://localhost:27017/${APP_DB}`, {
+const client = new MongoClient(`${MONGODB_URL}${APP_DB}`, {
 	authSource: 'admin',
 	auth: {
 		username: MONGODB_USERNAME,

@@ -6,7 +6,10 @@ services:
     volumes:
       - ..:/workspace:cached
     command: sleep infinity
-    network_mode: service:mongodb
+    networks:
+      - svelte-auth-network
+    depends_on:
+      - mongodb
 
   mongodb:
     image: mongo:8
@@ -19,8 +22,14 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password123
       MONGO_INITDB_DATABASE: sveltekit_auth
     volumes:
-      mongodb_data: /data/db
-      mongodb_config: /data/configdb
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - svelte-auth-network
+
+networks:
+  svelte-auth-network:
+    driver: bridge
 
 volumes:
   mongodb_data:
