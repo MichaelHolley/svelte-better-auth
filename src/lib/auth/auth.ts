@@ -1,23 +1,10 @@
-import { betterAuth } from 'better-auth';
-import { mongodbAdapter } from 'better-auth/adapters/mongodb';
-import { MongoClient } from 'mongodb';
-import { MONGODB_USERNAME, MONGODB_PASSWORD, APP_DB, MONGODB_URL } from '$env/static/private';
-import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { getRequestEvent } from '$app/server';
-
-const client = new MongoClient(`${MONGODB_URL}${APP_DB}`, {
-	authSource: 'admin',
-	auth: {
-		username: MONGODB_USERNAME,
-		password: MONGODB_PASSWORD
-	}
-});
-const db = client.db();
+import { betterAuth } from 'better-auth';
+import { sveltekitCookies } from 'better-auth/svelte-kit';
+import Database from 'better-sqlite3';
 
 export const auth = betterAuth({
-	database: mongodbAdapter(db, {
-		client
-	}),
+	database: new Database('db.sqlite'),
 	emailAndPassword: {
 		enabled: true,
 		requireEmailVerification: false,
