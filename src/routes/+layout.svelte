@@ -1,8 +1,11 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import { useSession } from '$lib/auth/auth-client';
 
 	let { children } = $props();
+
+	const session = useSession();
 </script>
 
 <svelte:head>
@@ -13,5 +16,9 @@
 	<div class="mb-8">
 		<a href="/" class="underline">Home</a>
 	</div>
-	{@render children()}
+	{#if $session.isPending || $session.isRefetching}
+		<p>Loading session...</p>
+	{:else}
+		{@render children()}
+	{/if}
 </div>

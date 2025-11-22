@@ -59,15 +59,13 @@
 	<p>{$session.data.user.email}</p>
 	<p>{$session.data.user.id}</p>
 	<button onclick={signOutHandler} class="border">Sign Out</button>
-{:else if $session.isPending || $session.isRefetching}
-	<p>Loading session...</p>
 {:else}
 	<h2>Please sign up</h2>
 	<form onsubmit={signUpHandler}>
 		<input bind:value={mailInput} type="email" placeholder="Email" class="my-1 border" />
 		<input bind:value={passwordInput} type="password" placeholder="Password" class="my-1 border" />
-		<button type="submit" class="border px-1">Sign Up</button>
-		<button type="button" onclick={handleSignIn} class="border px-1">Sign In</button>
+		<button type="button" class="border px-1">Sign Up</button>
+		<button type="submit" onclick={handleSignIn} class="border px-1">Sign In</button>
 	</form>
 {/if}
 
