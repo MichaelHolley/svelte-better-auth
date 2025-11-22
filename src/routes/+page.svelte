@@ -49,6 +49,12 @@
 		}
 	};
 
+	const signInWithGitHub = async () => {
+		const data = await signIn.social({
+			provider: 'github'
+		});
+	};
+
 	const signOutHandler = async () => {
 		await signOut();
 	};
@@ -58,7 +64,8 @@
 	<h2>Welcome, {$session.data.user.name}!</h2>
 	<p>{$session.data.user.email}</p>
 	<p>{$session.data.user.id}</p>
-	<button onclick={signOutHandler} class="border">Sign Out</button>
+	<img src={$session.data.user.image} alt="User Avatar" class="size-8" />
+	<button onclick={signOutHandler} class="mt-1 border">Sign Out</button>
 {:else}
 	<h2>Please sign up</h2>
 	<form onsubmit={signUpHandler}>
@@ -67,6 +74,7 @@
 		<button type="button" class="border px-1">Sign Up</button>
 		<button type="submit" onclick={handleSignIn} class="border px-1">Sign In</button>
 	</form>
+	<button onclick={signInWithGitHub} class="mt-4 border px-1">Sign In with GitHub</button>
 {/if}
 
 <div class="mt-6">
